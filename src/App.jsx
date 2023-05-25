@@ -1,36 +1,24 @@
-import styled from "styled-components"
-import HomePage from "./pages/HomePage/HomePage"
-import SeatsPage from "./pages/SeatsPage/SeatsPage"
-import SessionsPage from "./pages/SessionsPage/SessionsPage"
-import SuccessPage from "./pages/SuccessPage/SuccessPage"
+import axios from "axios";
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+import SeatsPage from "./components/SeatsPage";
+import SessionsPage from "./components/SessionsPage";
+import SuccessPage from "./components/SuccessPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
-    return (
-        <>
-           <NavContainer>CINEFLEX</NavContainer>
+  axios.defaults.headers.common["Authorization"] = "whm6529QKuCC73XvX1wBh1PI";
 
-            <HomePage />
-            {/* <SeatsPage /> */}
-            {/* <SessionsPage /> */}
-            {/* <SuccessPage /> */}
-        </>
-    )
+  return (
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sessions" element={<SessionsPage />} />
+        <Route path="/seats" element={<SeatsPage />} />
+        <Route path="/success" element={<SuccessPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-const NavContainer = styled.div`
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #C3CFD9;
-    color: #E8833A;
-    font-family: 'Roboto', sans-serif;
-    font-size: 34px;
-    position: fixed;
-    top: 0;
-    a {
-        text-decoration: none;
-        color: #E8833A;
-    }
-`
