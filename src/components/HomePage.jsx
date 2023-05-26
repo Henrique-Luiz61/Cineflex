@@ -12,7 +12,6 @@ export default function HomePage() {
 
     const promise = axios.get(URL);
     promise.then((resposta) => {
-      console.log(resposta.data);
       setMovies(resposta.data);
     });
     promise.catch((erro) => {
@@ -20,23 +19,27 @@ export default function HomePage() {
     });
   }, []);
 
+  if (movies.length === 0) {
+    return <SCLoading>Loading...</SCLoading>;
+  }
+
   return (
-    <PageContainer>
+    <SCPageContainer>
       Selecione o filme
-      <ListContainer>
+      <SCListContainer>
         {movies.map((movie) => (
-          <Link key={movie.id} to="/sessions">
-            <MovieContainer>
+          <Link key={movie.id} to={`/sessions/${movie.id}`}>
+            <SCMovieContainer>
               <img src={movie.posterURL} alt="poster" />
-            </MovieContainer>
+            </SCMovieContainer>
           </Link>
         ))}
-      </ListContainer>
-    </PageContainer>
+      </SCListContainer>
+    </SCPageContainer>
   );
 }
 
-const PageContainer = styled.div`
+const SCPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,14 +50,14 @@ const PageContainer = styled.div`
   margin-top: 30px;
   padding-top: 70px;
 `;
-const ListContainer = styled.div`
+const SCListContainer = styled.div`
   width: 330px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   padding: 10px;
 `;
-const MovieContainer = styled.div`
+const SCMovieContainer = styled.div`
   width: 145px;
   height: 210px;
   box-shadow: 0px 2px 4px 2px #0000001a;
@@ -67,4 +70,9 @@ const MovieContainer = styled.div`
     width: 130px;
     height: 190px;
   }
+`;
+const SCLoading = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
