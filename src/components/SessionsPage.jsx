@@ -10,20 +10,20 @@ export default function SessionsPage() {
   const [session, setSession] = useState(undefined);
   const [daysSession, setDays] = useState([]);
 
-  useEffect(() => {
+  useEffect(getSessions, []);
+
+  function getSessions() {
     const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idMovie}/showtimes`;
     const promise = axios.get(URL);
 
     promise.then((resposta) => {
       setSession(resposta.data);
       setDays(resposta.data.days);
-      console.log(resposta.data);
-      console.log(resposta.data.days);
     });
     promise.catch((err) => {
       console.log(err);
     });
-  }, []);
+  }
 
   if (session === undefined) {
     return <div>Loading...</div>;
@@ -33,14 +33,14 @@ export default function SessionsPage() {
     <PageContainer>
       Selecione o horário
       <div>
-        {daysSession.map((s) => (
+        {daysSession.map((s, i) => (
           <SessionContainer key={s.id}>
             {s.weekday} - {s.date}
             <ButtonsContainer>
-              <Link to="/seats">
+              <Link to={`/seats/${s.showtimes[0].id}`}>
                 <button>{s.showtimes[0].name}</button>
               </Link>
-              <Link to="/seats">
+              <Link to={`/seats/${s.showtimes[1].id}`}>
                 <button>{s.showtimes[1].name}</button>
               </Link>
             </ButtonsContainer>
