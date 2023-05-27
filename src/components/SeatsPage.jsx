@@ -30,19 +30,23 @@ export default function SeatsPage() {
     <PageContainer>
       Selecione o(s) assento(s)
       <SeatsContainer>
-        <SeatItem>01</SeatItem>
+        {sessionMovie.seats.map((seat) => (
+          <SeatItem key={seat.name} isAvailable={seat.isAvailable}>
+            {seat.name}
+          </SeatItem>
+        ))}
       </SeatsContainer>
       <CaptionContainer>
         <CaptionItem>
-          <CaptionCircle />
+          <SelectedCircle />
           Selecionado
         </CaptionItem>
         <CaptionItem>
-          <CaptionCircle />
+          <AvailableCircle />
           Disponível
         </CaptionItem>
         <CaptionItem>
-          <CaptionCircle />
+          <UnavailableCircle />
           Indisponível
         </CaptionItem>
       </CaptionContainer>
@@ -112,9 +116,31 @@ const CaptionContainer = styled.div`
   justify-content: space-between;
   margin: 20px;
 `;
-const CaptionCircle = styled.div`
-  border: 1px solid blue; // Essa cor deve mudar
-  background-color: lightblue; // Essa cor deve mudar
+const SelectedCircle = styled.div`
+  border: 1px solid #0e7d71;
+  background-color: #1aae9e;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 3px;
+`;
+const AvailableCircle = styled.div`
+  border: 1px solid #7b8b99;
+  background-color: #c3cfd9;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 3px;
+`;
+const UnavailableCircle = styled.div`
+  border: 1px solid #f7c52b;
+  background-color: #fbe192;
   height: 25px;
   width: 25px;
   border-radius: 25px;
@@ -130,8 +156,8 @@ const CaptionItem = styled.div`
   font-size: 12px;
 `;
 const SeatItem = styled.div`
-  border: 1px solid blue; // Essa cor deve mudar
-  background-color: lightblue; // Essa cor deve mudar
+  border: 1px solid ${(props) => (props.isAvailable ? "#7b8b99" : "#f7c52b")};
+  background-color: ${(props) => (props.isAvailable ? "#c3cfd9" : "#fbe192")};
   height: 25px;
   width: 25px;
   border-radius: 25px;
