@@ -29,7 +29,7 @@ export default function HomePage() {
       <SCListContainer>
         {movies.map((movie) => (
           <Link key={movie.id} to={`/sessions/${movie.id}`}>
-            <SCMovieContainer>
+            <SCMovieContainer data-test="movie">
               <img src={movie.posterURL} alt="poster" />
             </SCMovieContainer>
           </Link>
