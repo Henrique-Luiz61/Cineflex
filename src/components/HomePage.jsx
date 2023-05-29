@@ -28,7 +28,7 @@ export default function HomePage() {
       Selecione o filme
       <SCListContainer>
         {movies.map((movie) => (
-          <Link key={movie.id} to={`/sessions/${movie.id}`}>
+          <Link key={movie.id} to={`/sessoes/${movie.id}`}>
             <SCMovieContainer data-test="movie">
               <img src={movie.posterURL} alt="poster" />
             </SCMovieContainer>

@@ -71,7 +71,7 @@ export default function SeatsPage() {
 
     const promise = axios.post(URL_API, objTicket);
 
-    promise.then((resposta) => navigate("/success", { state: objSuccess }));
+    promise.then((resposta) => navigate("/sucesso", { state: objSuccess }));
 
     promise.catch((erro) => console.log(erro.response.data));
   }
