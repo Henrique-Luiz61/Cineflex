@@ -88,6 +88,13 @@ const ButtonsContainer = styled.div`
   margin: 20px 0;
   button {
     margin-right: 20px;
+    width: 83px;
+    height: 43px;
+    background-color: #e8833a;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
   }
   a {
     text-decoration: none;

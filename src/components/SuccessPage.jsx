@@ -61,6 +61,13 @@ const PageContainer = styled.div`
   }
   button {
     margin-top: 50px;
+    width: 225px;
+    height: 42px;
+    background: #e8833a;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
   }
   h1 {
     font-family: "Roboto";

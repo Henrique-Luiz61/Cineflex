@@ -200,9 +200,16 @@ const FormContainer = styled.form`
   font-size: 18px;
   button {
     align-self: center;
+    width: 225px;
+    height: 42px;
+    background-color: #e8833a;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-top: 20px;
   }
   input {
     width: calc(100vw - 60px);
+    margin-bottom: 20px;
   }
 `;
 const CaptionContainer = styled.div`
